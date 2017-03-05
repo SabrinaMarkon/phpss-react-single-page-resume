@@ -1,13 +1,18 @@
 {
-  "name": "chat-example",
-  "version": "0.0.0",
-  "description": "A chat example to showcase how to use `socket.io` with a static `express` server with `async` for control flow.",
-  "main": "server.js",
-  "repository": "",
-  "author": "Mostafa Eweda <mo.eweda@gmail.com>",
+  "name": "singlepageresume",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "async": "~0.2.8",
-    "express": "~3.2.4",
-    "socket.io": "~0.9.14"
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  },
+  "devDependencies": {
+    "react-scripts": "0.9.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   }
 }
