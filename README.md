@@ -1,3 +1,11 @@
+# phpss-react-single-page-resume
+
+A React based template for viewing a single page resume with values supplied
+by JSON data.
+
+Demo: http://phpss-react-single-page-resume-sabrinamarkon.c9users.io
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
