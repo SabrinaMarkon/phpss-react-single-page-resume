@@ -2,6 +2,43 @@ import React, { Component } from 'react';
 
 class Portfolio extends Component {
   render() {
+     if (this.props.data) {
+        var portfolio = this.props.data.projects.map(function(project) {
+            // portfolio is an array so we use map on the projects object to get each:
+            var imageUrl = 'images/portfolio/' + project.image;
+            return <div key={project.title} className="columns portfolio-item">
+                  <div className="item-wrap">
+                     <a href={project.modal} title="">
+                        <img alt="" src={imageUrl} />
+                        <div className="overlay">
+                           <div className="portfolio-item-meta">
+          					      <h5>{project.title}</h5>
+                              <p>{project.category}</p>
+          					   </div>
+                        </div>
+                        <div className="link-icon"><i className="icon-plus"></i></div>
+                     </a>
+                  </div>
+          		</div>
+        });
+        
+        var modals = this.props.data.projects.map(function(mdl) {
+           var imageUrl = 'images/portfolio/' + mdl.image;
+           var modalId = mdl.modal.substr(1);
+           return <div key={mdl.modal} id={modalId} className="popup-modal mfp-hide">
+		      <img className="scale-with-grid" src={imageUrl} alt="" />
+		      <div className="description-box">
+			      <h4>{mdl.title}</h4>
+			      <p>{mdl.category}</p>
+               <span className="categories"><i className="fa fa-tag"></i>{mdl.tags}</span>
+		      </div>
+            <div className="link-box">
+               <a href={mdl.url} target="_blank">Details</a>
+		         <a className="popup-modal-dismiss">Close</a>
+            </div>
+	      </div>
+        });
+     }
     return (
    <section id="portfolio">
 
@@ -12,143 +49,7 @@ class Portfolio extends Component {
             <h1>Check Out Some of My Works.</h1>
 
             <div id="portfolio-wrapper" className="bgrid-quarters s-bgrid-thirds cf">
-
-          	   <div className="columns portfolio-item">
-                  <div className="item-wrap">
-
-                     <a href="#modal-01" title="">
-                        <img alt="" src="images/portfolio/coffee.jpg" />
-                        <div className="overlay">
-                           <div className="portfolio-item-meta">
-          					      <h5>Coffee</h5>
-                              <p>Illustrration</p>
-          					   </div>
-                        </div>
-                        <div className="link-icon"><i className="icon-plus"></i></div>
-                     </a>
-
-                  </div>
-          		</div>
-
-               <div className="columns portfolio-item">
-                  <div className="item-wrap">
-
-                     <a href="#modal-02" title="">
-                        <img alt="" src="images/portfolio/console.jpg" />
-                        <div className="overlay">
-                           <div className="portfolio-item-meta">
-          					      <h5>Console</h5>
-                              <p>Web Development</p>
-          					   </div>
-                        </div>
-                        <div className="link-icon"><i className="icon-plus"></i></div>
-                     </a>
-
-                  </div>
-          		</div>
-
-               <div className="columns portfolio-item">
-                  <div className="item-wrap">
-
-                     <a href="#modal-03" title="">
-                        <img alt="" src="images/portfolio/judah.jpg" />
-                        <div className="overlay">
-                           <div className="portfolio-item-meta">
-          					      <h5>Judah</h5>
-                              <p>Webdesign</p>
-          					   </div>
-                        </div>
-                        <div className="link-icon"><i className="icon-plus"></i></div>
-                     </a>
-
-                  </div>
-          		</div>
-
-               <div className="columns portfolio-item">
-                  <div className="item-wrap">
-
-                     <a href="#modal-04" title="">
-                        <img alt="" src="images/portfolio/into-the-light.jpg" />
-                        <div className="overlay">
-                           <div className="portfolio-item-meta">
-          					      <h5>Into The Light</h5>
-                              <p>Photography</p>
-          					   </div>
-                        </div>
-                        <div className="link-icon"><i className="icon-plus"></i></div>
-                     </a>
-
-                  </div>
-          		</div>
-
-               <div className="columns portfolio-item">
-                  <div className="item-wrap">
-
-                     <a href="#modal-05" title="">
-                        <img alt="" src="images/portfolio/farmerboy.jpg" />
-                        <div className="overlay">
-                           <div className="portfolio-item-meta">
-          					      <h5>Farmer Boy</h5>
-                              <p>Branding</p>
-          					   </div>
-                        </div>
-                        <div className="link-icon"><i className="icon-plus"></i></div>
-                     </a>
-
-                  </div>
-          		</div>
-
-               <div className="columns portfolio-item">
-                  <div className="item-wrap">
-
-                     <a href="#modal-06" title="">
-                        <img alt="" src="images/portfolio/girl.jpg" />
-                        <div className="overlay">
-                           <div className="portfolio-item-meta">
-          					      <h5>Girl</h5>
-                              <p>Photography</p>
-          					   </div>
-                        </div>
-                        <div className="link-icon"><i className="icon-plus"></i></div>
-                     </a>
-
-                  </div>
-          		</div>
-
-               <div className="columns portfolio-item">
-                  <div className="item-wrap">
-
-                     <a href="#modal-07" title="">
-                        <img alt="" src="images/portfolio/origami.jpg" />
-                        <div className="overlay">
-                           <div className="portfolio-item-meta">
-          					      <h5>Origami</h5>
-                              <p>Illustrration</p>
-          					   </div>
-                        </div>
-                        <div className="link-icon"><i className="icon-plus"></i></div>
-                     </a>
-
-                  </div>
-          		</div>
-
-               <div className="columns portfolio-item">
-                  <div className="item-wrap">
-
-                     <a href="#modal-08" title="">
-                        <img alt="" src="images/portfolio/retrocam.jpg" />
-                        <div className="overlay">
-                           <div className="portfolio-item-meta">
-          					      <h5>Retrocam</h5>
-                              <p>Web Development</p>
-          					   </div>
-                        </div>
-                        <div className="link-icon"><i className="icon-plus"></i></div>
-                     </a>
-
-                  </div>
-          		</div>
-
+               {portfolio}
             </div>
 
          </div>
@@ -157,22 +58,7 @@ class Portfolio extends Component {
          {/* Modal Popup
 	      --------------------------------------------------------------- */}
 
-         <div id="modal-01" className="popup-modal mfp-hide">
-
-		      <img className="scale-with-grid" src="images/portfolio/modals/m-coffee.jpg" alt="" />
-
-		      <div className="description-box">
-			      <h4>Coffee Cup</h4>
-			      <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.</p>
-               <span className="categories"><i className="fa fa-tag"></i>Branding, Webdesign</span>
-		      </div>
-
-            <div className="link-box">
-               <a href="http://www.behance.net">Details</a>
-		         <a className="popup-modal-dismiss">Close</a>
-            </div>
-
-	      </div>
+         {modals}
 
          <div id="modal-02" className="popup-modal mfp-hide">
 
