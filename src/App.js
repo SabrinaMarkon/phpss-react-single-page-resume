@@ -10,6 +10,7 @@ import Resume from './Components/Resume';
 import Testimonials from './Components/Testimonials';
 
 class App extends Component {
+  
   constructor(props) {
    super(props);
    this.state = {
@@ -17,6 +18,7 @@ class App extends Component {
      resumeData: {}
    }
   }
+  
   getResumeData() {
     $.ajax({
       url: 'resumeData.json',
@@ -33,18 +35,20 @@ class App extends Component {
       }
     });
   }
+  
   /* typically ajax request goes in a lifecycle method called componentDidMount */
   componentDidMount() {
     /* call method above - need to install jquery for ajax request. (yes I know it doesn't HAVE to be with jquery.) */
     this.getResumeData();
   }
+  
   render() {
     console.log(this.state.resumeData);
     return (
       <div className="App">
-        <Header />
-        <About />
-        <Resume />
+        <Header data={this.state.resumeData.main}/>
+        <About data={this.state.resumeData.main} />
+        <Resume data={this.state.resumeData.resume} />
         <Portfolio />
         <Testimonials />
         <Contact />

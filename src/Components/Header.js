@@ -2,6 +2,16 @@ import React, { Component } from 'react';
 
 class Header extends Component {
   render() {
+     if (this.props.data) {
+        var name = this.props.data.name;
+        var occupation = this.props.data.occupation;
+        var description = this.props.data.description;
+        var city = this.props.data.address.city;
+        var networks = this.props.data.social.map(function(network) {
+            // networks is an array so we use map on the social object to get each:
+            return <li key={network.name}><a href={network.url}><i className={network.className}></i></a></li>
+        });
+     }
     return (
    <header id="home">
 
@@ -23,19 +33,11 @@ class Header extends Component {
 
       <div className="row banner">
          <div className="banner-text">
-            <h1 className="responsive-headline">I'm Jonathan Doe.</h1>
-            <h3>I'm a Manila based <span>graphic designer</span>, <span>illustrator</span> and <span>webdesigner</span> creating awesome and
-            effective visual identities for companies of all sizes around the globe. Let's <a className="smoothscroll" href="#about">start scrolling</a>
-            and learn more <a className="smoothscroll" href="#about">about me</a>.</h3>
+            <h1 className="responsive-headline">I'm {name}.</h1>
+            <h3>I'm a {city} based <span>{occupation}</span> {description}</h3>
             <hr />
             <ul className="social">
-               <li><a href="#"><i className="fa fa-facebook"></i></a></li>
-               <li><a href="#"><i className="fa fa-twitter"></i></a></li>
-               <li><a href="#"><i className="fa fa-google-plus"></i></a></li>
-               <li><a href="#"><i className="fa fa-linkedin"></i></a></li>
-               <li><a href="#"><i className="fa fa-instagram"></i></a></li>
-               <li><a href="#"><i className="fa fa-dribbble"></i></a></li>
-               <li><a href="#"><i className="fa fa-skype"></i></a></li>
+               {networks}
             </ul>
          </div>
       </div>
